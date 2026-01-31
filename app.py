@@ -19,10 +19,12 @@ print("Preprocessing metadata saved successfully as 'preprocessing_metadata.jobl
 # Load the trained model and preprocessing metadata
 model = joblib.load('logistic_regression_model.joblib')
 preprocessing_metadata = joblib.load('preprocessing_metadata.joblib')
-…
+if _name_ == "_main_":
+    import os
+    port = int(os.environ.get("PORT", 10000))
     # Return the prediction as a JSON response
     return jsonify({'prediction': int(prediction[0])})
-
+    app.run(host='0.0.0.0', port=port)
 # This part is for running the app. In a typical deployment, a WSGI server would manage this.
  if __name__ == '__main__':
      app.run(debug=True)
